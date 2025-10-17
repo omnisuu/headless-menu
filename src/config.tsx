@@ -11,19 +11,17 @@ export const SIDEBAR_WIDTH = "16rem";
 export const SIDEBAR_WIDTH_ICON = "3rem";
 export const SIDEBAR_WIDTH_MOBILE = "18rem";
 
-interface AppRoute {
+export interface AppRoute {
 	path: string;
 	element: ReactNode;
 	children?: AppRoute[];
-
-	// Навигация
 	id: string;
 	title: string;
 	icon?: ReactNode;
 	showInSidebar?: boolean;
 }
 
-export const appRoutes: AppRoute[] = [
+export const routesConfig: AppRoute[] = [
 	{
 		id: "hello",
 		title: "Привет!",
@@ -42,7 +40,7 @@ export const appRoutes: AppRoute[] = [
 			{
 				id: "list-item-1",
 				title: "Первый элемент",
-				path: "/first",
+				path: "first",
 				element: <>Первый</>,
 				icon: <CircleStarIcon />,
 			},

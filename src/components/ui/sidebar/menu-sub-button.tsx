@@ -3,13 +3,13 @@ import type { ComponentProps, FC } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
-interface MenuSubButtonProps extends ComponentProps<typeof Link> {
+interface SidebarMenuSubButtonProps extends ComponentProps<typeof Link> {
 	asChild?: boolean;
 	size?: "sm" | "md";
 	isActive?: boolean;
 }
 
-const MenuSubButton: FC<MenuSubButtonProps> = ({
+const SidebarMenuSubButton: FC<SidebarMenuSubButtonProps> = ({
 	asChild = false,
 	size = "md",
 	isActive = false,
@@ -37,4 +37,4 @@ const MenuSubButton: FC<MenuSubButtonProps> = ({
 	);
 };
 
-export { MenuSubButton };
+export { SidebarMenuSubButton };

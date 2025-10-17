@@ -7,7 +7,7 @@ export { SidebarHeader } from "./header";
 export { SidebarMenu } from "./menu";
 export { SidebarMenuItem } from "./menu-item";
 export { SidebarMenuSub } from "./menu-sub";
-export { MenuSubButton } from "./menu-sub-button";
+export { SidebarMenuSubButton } from "./menu-sub-button";
 export { SidebarMenuSubItem } from "./menu-sub-item";
 export { SidebarProvider } from "./provider";
 export { SidebarSeparator } from "./separator";
