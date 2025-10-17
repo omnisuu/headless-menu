@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/collapsible";
 import {
 	SidebarContent,
+	SidebarGroup,
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarMenuSub,
@@ -64,7 +65,9 @@ const renderRoute = (route: AppRoute) => {
 const AppSidebarContent = () => {
 	return (
 		<SidebarContent>
-			{routesConfig.map((route) => renderRoute(route))}
+			<SidebarGroup>
+				{routesConfig.map((route) => renderRoute(route))}
+			</SidebarGroup>
 		</SidebarContent>
 	);
 };

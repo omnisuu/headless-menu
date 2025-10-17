@@ -1,12 +1,20 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import type { ComponentProps, FC } from "react";
+import {
+	Children,
+	type ComponentProps,
+	type FC,
+	isValidElement,
+	type ReactNode,
+} from "react";
+import { Link } from "react-router-dom";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { SheetClose } from "../sheet";
 import { useSidebar } from "./context";
 
 const sidebarMenuButtonVariants = cva(
@@ -46,21 +54,40 @@ const SidebarMenuButton: FC<SidebarMenuButtonProps> = ({
 	size = "default",
 	tooltip,
 	className,
+	children,
 	...restProps
 }) => {
 	const { isMobile, state } = useSidebar();
 
-	const Component = asChild ? Slot : "button";
-	const button = (
-		<Component
+	const BaseComponent = asChild ? Slot : "button";
+	const component = (
+		<BaseComponent
 			data-slot="sidebar-menu-button"
 			data-sidebar="menu-button"
 			data-size={size}
 			data-active={isActive}
 			className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
 			{...restProps}
-		/>
+		>
+			{children}
+		</BaseComponent>
 	);
+
+	let button: ReactNode;
+	if (isMobile) {
+		let linkChildFound = false;
+
+		Children.forEach(children, (child) => {
+			if (isValidElement(child)) {
+				if (child.type === Link) {
+					button = <SheetClose asChild>{component}</SheetClose>;
+					linkChildFound = true;
+				}
+			}
+		});
+
+		if (!linkChildFound) button = component;
+	} else button = component;
 
 	if (!tooltip) return button;
 

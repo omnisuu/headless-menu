@@ -13,7 +13,7 @@ export const SIDEBAR_WIDTH_MOBILE = "18rem";
 
 export interface AppRoute {
 	path: string;
-	element: ReactNode;
+	element?: ReactNode;
 	children?: AppRoute[];
 	id: string;
 	title: string;
@@ -34,7 +34,6 @@ export const routesConfig: AppRoute[] = [
 		id: "list",
 		title: "Список",
 		path: "/list",
-		element: <>List</>,
 		icon: <ListChevronsUpDownIcon />,
 		children: [
 			{

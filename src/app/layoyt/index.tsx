@@ -20,6 +20,7 @@ export const Layout = () => {
 			<Sidebar collapsible="icon">
 				<SidebarHeader />
 				<SidebarContent />
+
 				<SidebarFooter>
 					<SidebarMenu>
 						<SidebarMenuItem>

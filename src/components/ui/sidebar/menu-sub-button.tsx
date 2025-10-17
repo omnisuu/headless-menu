@@ -1,7 +1,9 @@
 import { Slot } from "@radix-ui/react-slot";
 import type { ComponentProps, FC } from "react";
 import { Link } from "react-router-dom";
+import { SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { useSidebar } from "./context";
 
 interface SidebarMenuSubButtonProps extends ComponentProps<typeof Link> {
 	asChild?: boolean;
@@ -16,10 +18,11 @@ const SidebarMenuSubButton: FC<SidebarMenuSubButtonProps> = ({
 	className,
 	...restProps
 }) => {
-	const Component = asChild ? Slot : Link;
+	const { isMobile } = useSidebar();
 
-	return (
-		<Component
+	const BaseComponent = asChild ? Slot : Link;
+	const component = (
+		<BaseComponent
 			data-slot="sidebar-menu-sub-button"
 			data-sidebar="menu-sub-button"
 			data-size={size}
@@ -35,6 +38,10 @@ const SidebarMenuSubButton: FC<SidebarMenuSubButtonProps> = ({
 			{...restProps}
 		/>
 	);
+
+	if (isMobile) return <SheetClose asChild>{component}</SheetClose>;
+
+	return component;
 };
 
 export { SidebarMenuSubButton };
