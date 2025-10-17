@@ -9,7 +9,7 @@ if (!root) throw "Could not find app root";
 
 createRoot(root).render(
 	<StrictMode>
-		<BrowserRouter>
+		<BrowserRouter basename="/headless-menu">
 			<Router />
 		</BrowserRouter>
 	</StrictMode>,
