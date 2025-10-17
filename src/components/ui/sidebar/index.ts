@@ -11,4 +11,6 @@ export { MenuSubButton } from "./menu-sub-button";
 export { SidebarMenuSubItem } from "./menu-sub-item";
 export { SidebarProvider } from "./provider";
 export { SidebarSeparator } from "./separator";
+export { Sidebar } from "./sidebar";
+export { SidebarInset } from "./sidebar-inset";
 export { SidebarToggle } from "./toggle";

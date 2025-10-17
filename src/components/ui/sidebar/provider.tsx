@@ -1,11 +1,9 @@
 import type { ComponentProps, CSSProperties, FC } from "react";
 import { useCallback, useMemo, useState } from "react";
+import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON } from "@/config";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { SidebarContext } from "./context";
-
-const SIDEBAR_WIDTH = "16rem";
-const SIDEBAR_WIDTH_ICON = "3rem";
 
 interface SidebarProviderProps extends ComponentProps<"div"> {
 	defaultOpen?: boolean;
