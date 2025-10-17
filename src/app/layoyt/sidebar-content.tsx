@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
 	Collapsible,
 	CollapsibleContent,
@@ -16,13 +16,13 @@ import {
 } from "@/components/ui/sidebar";
 import { type AppRoute, routesConfig } from "@/config";
 
-const renderRoute = (route: AppRoute) => {
+const renderRoute = (route: AppRoute, currentPath: string) => {
 	if (route.showInSidebar === false) return null;
 
 	if (!route.children?.length)
 		return (
 			<SidebarMenuItem key={route.id}>
-				<SidebarMenuButton asChild>
+				<SidebarMenuButton asChild isActive={route.path === currentPath}>
 					<Link to={route.path}>
 						{route.icon}
 						<span>{route.title}</span>
@@ -31,11 +31,15 @@ const renderRoute = (route: AppRoute) => {
 			</SidebarMenuItem>
 		);
 
+	const activeChildId = route.children.find(
+		(child) => `${route.path}/${child.path}` === currentPath,
+	)?.id;
+
 	return (
 		<Collapsible
 			key={route.id}
 			asChild
-			// defaultOpen={route.isActive}
+			defaultOpen={!!activeChildId}
 			className="group/collapsible"
 		>
 			<SidebarMenuItem>
@@ -49,8 +53,11 @@ const renderRoute = (route: AppRoute) => {
 				<CollapsibleContent>
 					<SidebarMenuSub>
 						{route.children?.map((subRoute) => (
-							<SidebarMenuSubItem key={subRoute.title}>
-								<SidebarMenuSubButton to={`${route.path}/${subRoute.path}`}>
+							<SidebarMenuSubItem key={subRoute.id}>
+								<SidebarMenuSubButton
+									to={`${route.path}/${subRoute.path}`}
+									isActive={subRoute.id === activeChildId}
+								>
 									<span>{subRoute.title}</span>
 								</SidebarMenuSubButton>
 							</SidebarMenuSubItem>
@@ -63,10 +70,12 @@ const renderRoute = (route: AppRoute) => {
 };
 
 const AppSidebarContent = () => {
+	const { pathname: path } = useLocation();
+
 	return (
 		<SidebarContent>
 			<SidebarGroup>
-				{routesConfig.map((route) => renderRoute(route))}
+				{routesConfig.map((route) => renderRoute(route, path))}
 			</SidebarGroup>
 		</SidebarContent>
 	);

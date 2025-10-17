@@ -31,8 +31,8 @@ export const routesConfig: AppRoute[] = [
 		showInSidebar: true,
 	},
 	{
-		id: "list",
-		title: "Список",
+		id: "list-1",
+		title: "Список 1",
 		path: "/list",
 		icon: <ListChevronsUpDownIcon />,
 		children: [
@@ -48,6 +48,27 @@ export const routesConfig: AppRoute[] = [
 				title: "Второй элемент",
 				path: "second",
 				element: <>Второй</>,
+			},
+		],
+	},
+	{
+		id: "list-2",
+		title: "Список 2",
+		path: "/list",
+		icon: <ListChevronsUpDownIcon />,
+		children: [
+			{
+				id: "list-item-2-1",
+				title: "Первый элемент 2",
+				path: "first-2",
+				element: <>Первый 2</>,
+				icon: <CircleStarIcon />,
+			},
+			{
+				id: "list-item-2-2",
+				title: "Второй элемент 2",
+				path: "second-2",
+				element: <>Второй 2</>,
 			},
 		],
 	},
