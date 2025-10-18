@@ -43,6 +43,7 @@ const SidebarMenuButton: FC<SidebarMenuButtonProps> = ({
 	variant = "default",
 	size = "default",
 	tooltip,
+	popover,
 	className,
 	...restProps
 }) => {
