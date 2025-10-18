@@ -1,33 +1,31 @@
 import { PanelLeftIcon } from "lucide-react";
 import type { ComponentProps, FC } from "react";
 import { cn } from "@/lib/utils";
+import {
+	SidebarToggle as SidebarTogglePrimitive,
+	useSidebar,
+} from "@/primitives/sidebar";
 import { Button } from "../button";
-import { useSidebar } from "./context";
 
-interface SidebarToggleProps extends ComponentProps<typeof Button> {}
+interface SidebarToggleProps
+	extends ComponentProps<typeof SidebarTogglePrimitive> {}
 
-const SidebarToggle: FC<SidebarToggleProps> = ({
-	className,
-	onClick,
-	...restProps
-}) => {
-	const { toggleSidebar } = useSidebar();
+const SidebarToggle: FC<SidebarToggleProps> = ({ className, ...restProps }) => {
+	const { open, openOnMobile } = useSidebar();
 
 	return (
-		<Button
-			data-sidebar="toggle"
-			variant="ghost"
-			size="icon"
+		<SidebarTogglePrimitive
+			asChild
 			className={cn("size-7", className)}
-			onClick={(event) => {
-				onClick?.(event);
-				toggleSidebar();
-			}}
 			{...restProps}
 		>
-			<PanelLeftIcon />
-			<span className="sr-only">Toggle Sidebar</span>
-		</Button>
+			<Button variant="ghost" size="icon">
+				<PanelLeftIcon />
+				<span className="sr-only">
+					{open || openOnMobile ? "Закрыть" : "Открыть"} навигацию
+				</span>
+			</Button>
+		</SidebarTogglePrimitive>
 	);
 };
 

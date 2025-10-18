@@ -1,12 +1,13 @@
 import type { ComponentProps, FC } from "react";
 import { cn } from "@/lib/utils";
+import { SidebarInset as SidebarInsetPrimitive } from "@/primitives/sidebar";
 
-interface SidebarInsetProps extends ComponentProps<"main"> {}
+interface SidebarInsetProps
+	extends ComponentProps<typeof SidebarInsetPrimitive> {}
 
 const SidebarInset: FC<SidebarInsetProps> = ({ className, ...restProps }) => {
 	return (
-		<main
-			data-slot="sidebar-inset"
+		<SidebarInsetPrimitive
 			className={cn(
 				"bg-background relative flex w-full flex-1 flex-col",
 				"md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",

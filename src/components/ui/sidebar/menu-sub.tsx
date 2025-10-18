@@ -1,16 +1,16 @@
 import type { ComponentProps, FC } from "react";
 import { cn } from "@/lib/utils";
+import { SidebarMenuSub as SidebarMenuSubPrimitive } from "@/primitives/sidebar";
 
-interface SidebarMenuSubProps extends ComponentProps<"ul"> {}
+interface SidebarMenuSubProps
+	extends ComponentProps<typeof SidebarMenuSubPrimitive> {}
 
 const SidebarMenuSub: FC<SidebarMenuSubProps> = ({
 	className,
 	...restProps
 }) => {
 	return (
-		<ul
-			data-slot="sidebar-menu-sub"
-			data-sidebar="menu-sub"
+		<SidebarMenuSubPrimitive
 			className={cn(
 				"border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5",
 				"group-data-[collapsible=icon]:hidden",

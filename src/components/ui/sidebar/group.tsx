@@ -1,13 +1,13 @@
 import type { ComponentProps, FC } from "react";
 import { cn } from "@/lib/utils";
+import { SidebarGroup as SidebarGroupPrimitive } from "@/primitives/sidebar";
 
-interface SidebarGroupProps extends ComponentProps<"div"> {}
+interface SidebarGroupProps
+	extends ComponentProps<typeof SidebarGroupPrimitive> {}
 
 const SidebarGroup: FC<SidebarGroupProps> = ({ className, ...restProps }) => {
 	return (
-		<div
-			data-slot="sidebar-group"
-			data-sidebar="group"
+		<SidebarGroupPrimitive
 			className={cn("relative flex w-full min-w-0 flex-col p-2", className)}
 			{...restProps}
 		/>

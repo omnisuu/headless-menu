@@ -1,16 +1,16 @@
 import type { ComponentProps, FC } from "react";
 import { cn } from "@/lib/utils";
+import { SidebarMenuItem as SidebarMenuItemPrimitive } from "@/primitives/sidebar";
 
-interface SidebarMenuItemProps extends ComponentProps<"li"> {}
+interface SidebarMenuItemProps
+	extends ComponentProps<typeof SidebarMenuItemPrimitive> {}
 
 const SidebarMenuItem: FC<SidebarMenuItemProps> = ({
 	className,
 	...restProps
 }) => {
 	return (
-		<li
-			data-slot="sidebar-menu-item"
-			data-sidebar="menu-item"
+		<SidebarMenuItemPrimitive
 			className={cn("group/menu-item relative", className)}
 			{...restProps}
 		/>

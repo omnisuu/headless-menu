@@ -1,17 +1,16 @@
 import type { ComponentProps, FC } from "react";
 import { cn } from "@/lib/utils";
-import { Separator } from "../separator";
+import { SidebarSeparator as SidebarSeparatorPrimitive } from "@/primitives/sidebar";
 
-interface SidebarSeparatorProps extends ComponentProps<typeof Separator> {}
+interface SidebarSeparatorProps
+	extends ComponentProps<typeof SidebarSeparatorPrimitive> {}
 
 const SidebarSeparator: FC<SidebarSeparatorProps> = ({
 	className,
 	...restProps
 }) => {
 	return (
-		<Separator
-			data-slot="sidebar-separator"
-			data-sidebar="separator"
+		<SidebarSeparatorPrimitive
 			className={cn("bg-sidebar-border mx-2 w-auto", className)}
 			{...restProps}
 		/>

@@ -1,21 +1,15 @@
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-	Children,
-	type ComponentProps,
-	type FC,
-	isValidElement,
-	type ReactNode,
-} from "react";
-import { Link } from "react-router-dom";
+import type { ComponentProps, FC } from "react";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { SheetClose } from "../sheet";
-import { useSidebar } from "./context";
+import {
+	SidebarMenuButton as SidebarMenuButtonPrimitive,
+	useSidebar,
+} from "@/primitives/sidebar";
 
 const sidebarMenuButtonVariants = cva(
 	"peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
@@ -40,62 +34,39 @@ const sidebarMenuButtonVariants = cva(
 );
 
 interface SidebarMenuButtonProps
-	extends ComponentProps<"button">,
+	extends ComponentProps<typeof SidebarMenuButtonPrimitive>,
 		VariantProps<typeof sidebarMenuButtonVariants> {
-	asChild?: boolean;
-	isActive?: boolean;
 	tooltip?: string | ComponentProps<typeof TooltipContent>;
 }
 
 const SidebarMenuButton: FC<SidebarMenuButtonProps> = ({
-	asChild = false,
-	isActive = false,
 	variant = "default",
 	size = "default",
 	tooltip,
 	className,
-	children,
 	...restProps
 }) => {
 	const { isMobile, state } = useSidebar();
 
-	const BaseComponent = asChild ? Slot : "button";
 	const component = (
-		<BaseComponent
-			data-slot="sidebar-menu-button"
-			data-sidebar="menu-button"
+		<SidebarMenuButtonPrimitive
 			data-size={size}
-			data-active={isActive}
-			className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+			className={cn(
+				"whitespace-nowrap",
+				sidebarMenuButtonVariants({ variant, size }),
+				className,
+			)}
 			{...restProps}
-		>
-			{children}
-		</BaseComponent>
+		/>
 	);
 
-	let button: ReactNode;
-	if (isMobile) {
-		let linkChildFound = false;
-
-		Children.forEach(children, (child) => {
-			if (isValidElement(child)) {
-				if (child.type === Link) {
-					button = <SheetClose asChild>{component}</SheetClose>;
-					linkChildFound = true;
-				}
-			}
-		});
-
-		if (!linkChildFound) button = component;
-	} else button = component;
-
-	if (!tooltip) return button;
+	if (!tooltip) return component;
 
 	if (typeof tooltip === "string") tooltip = { children: tooltip };
 
 	return (
 		<Tooltip>
-			<TooltipTrigger asChild>{button}</TooltipTrigger>
+			<TooltipTrigger asChild>{component}</TooltipTrigger>
 			<TooltipContent
 				side="right"
 				align="center"

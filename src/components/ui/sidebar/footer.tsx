@@ -1,13 +1,13 @@
 import type { ComponentProps, FC } from "react";
 import { cn } from "@/lib/utils";
+import { SidebarFooter as SidebarFooterPrimitive } from "@/primitives/sidebar";
 
-interface SidebarFooterProps extends ComponentProps<"div"> {}
+interface SidebarFooterProps
+	extends ComponentProps<typeof SidebarFooterPrimitive> {}
 
 const SidebarFooter: FC<SidebarFooterProps> = ({ className, ...restProps }) => {
 	return (
-		<div
-			data-slot="sidebar-footer"
-			data-sidebar="footer"
+		<SidebarFooterPrimitive
 			className={cn("flex flex-col gap-2 p-2", className)}
 			{...restProps}
 		/>

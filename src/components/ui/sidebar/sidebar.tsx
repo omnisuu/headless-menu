@@ -1,6 +1,7 @@
 import type { ComponentProps, FC } from "react";
 import { SIDEBAR_WIDTH_MOBILE } from "@/config";
 import { cn } from "@/lib/utils";
+import { useSidebar } from "@/primitives/sidebar";
 import {
 	Sheet,
 	SheetContent,
@@ -8,7 +9,6 @@ import {
 	SheetHeader,
 	SheetTitle,
 } from "../sheet";
-import { useSidebar } from "./context";
 
 interface SidebarProps extends ComponentProps<"div"> {
 	side?: "left" | "right";

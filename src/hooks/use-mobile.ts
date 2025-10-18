@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { MOBILE_BREAKPOINT } from "@/config";
 
-/** Returns a stateful value indicating whether the screen size is mobile */
+/** Хук для определения типа устройства на основе ширины экрана */
 export const useIsMobile = () => {
-	// Undefined by default in case server-side usage
+	// Начальное значение undefined для корректной гидрации если захочется SSR
 	const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
 
 	useEffect(() => {
