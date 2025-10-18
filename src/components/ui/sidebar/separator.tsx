@@ -5,6 +5,7 @@ import { SidebarSeparator as SidebarSeparatorPrimitive } from "@/primitives/side
 interface SidebarSeparatorProps
 	extends ComponentProps<typeof SidebarSeparatorPrimitive> {}
 
+/** Сепаратор для разделов сайдбара */
 const SidebarSeparator: FC<SidebarSeparatorProps> = ({
 	className,
 	...restProps

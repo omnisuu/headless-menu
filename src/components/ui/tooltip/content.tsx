@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface TooltipContentProps extends ComponentProps<typeof Content> {}
 
+/** Содержание подсказки */
 const TooltipContent: FC<TooltipContentProps> = ({
 	className,
 	sideOffset = 0,

@@ -5,6 +5,7 @@ import { SidebarInset as SidebarInsetPrimitive } from "@/primitives/sidebar";
 interface SidebarInsetProps
 	extends ComponentProps<typeof SidebarInsetPrimitive> {}
 
+/** Обёртка для контента рядом с сайдбаром */
 const SidebarInset: FC<SidebarInsetProps> = ({ className, ...restProps }) => {
 	return (
 		<SidebarInsetPrimitive

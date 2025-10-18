@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface SheetTitleProps extends ComponentProps<typeof Title> {}
 
+/** Заголовок шторы */
 const SheetTitle: FC<SheetTitleProps> = ({ className, ...restProps }) => {
 	return (
 		<Title

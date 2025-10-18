@@ -3,6 +3,7 @@ import type { ComponentProps, FC } from "react";
 
 interface PopoverProps extends ComponentProps<typeof Root> {}
 
+/** Обёртка для поповера */
 const Popover: FC<PopoverProps> = ({ ...restProps }) => {
 	return <Root data-slot="popover" {...restProps} />;
 };

@@ -5,6 +5,7 @@ import { SidebarMenuItem as SidebarMenuItemPrimitive } from "@/primitives/sideba
 interface SidebarMenuItemProps
 	extends ComponentProps<typeof SidebarMenuItemPrimitive> {}
 
+/** Элемент меню сайдбара, можно считать за LI */
 const SidebarMenuItem: FC<SidebarMenuItemProps> = ({
 	className,
 	...restProps

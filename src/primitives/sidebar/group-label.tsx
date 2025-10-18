@@ -5,7 +5,7 @@ interface SidebarGroupLabelProps extends ComponentProps<"div"> {
 	asChild?: boolean;
 }
 
-/** Заголовка группы в сайдбаре */
+/** Заголовок группы в сайдбаре */
 const SidebarGroupLabel: FC<SidebarGroupLabelProps> = ({
 	asChild,
 	...restProps

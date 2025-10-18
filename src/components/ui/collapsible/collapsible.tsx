@@ -3,6 +3,7 @@ import type { ComponentProps, FC } from "react";
 
 interface CollapsibleProps extends ComponentProps<typeof Root> {}
 
+/** Обёртка для сворачиваемого блока */
 const Collapsible: FC<CollapsibleProps> = ({ ...restProps }) => {
 	return <Root data-slot="collapsible" {...restProps} />;
 };

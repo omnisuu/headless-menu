@@ -5,6 +5,7 @@ import { SidebarContent as SidebarContentPrimitive } from "@/primitives/sidebar"
 interface SidebarContentProps
 	extends ComponentProps<typeof SidebarContentPrimitive> {}
 
+/** Главное содержимое сайдбара (обычно между хэдером и футером) */
 const SidebarContent: FC<SidebarContentProps> = ({
 	className,
 	...restProps

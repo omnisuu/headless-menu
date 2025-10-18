@@ -5,6 +5,7 @@ import { SidebarMenu as SidebarMenuPrimitive } from "@/primitives/sidebar";
 interface SidebarMenuProps
 	extends ComponentProps<typeof SidebarMenuPrimitive> {}
 
+/** Меню сайдбара, можно считать за UL */
 const SidebarMenu: FC<SidebarMenuProps> = ({ className, ...restProps }) => {
 	return (
 		<SidebarMenuPrimitive

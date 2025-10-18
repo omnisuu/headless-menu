@@ -1,11 +1,11 @@
 import { PanelLeftIcon } from "lucide-react";
 import type { ComponentProps, FC } from "react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
 	SidebarToggle as SidebarTogglePrimitive,
 	useSidebar,
 } from "@/primitives/sidebar";
-import { Button } from "../button";
 
 interface SidebarToggleProps
 	extends ComponentProps<typeof SidebarTogglePrimitive> {}

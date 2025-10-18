@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 interface SheetHeaderProps extends ComponentProps<"div"> {}
 
+/** Хедер шторы */
 const SheetHeader: FC<SheetHeaderProps> = ({ className, ...restProps }) => {
 	return (
 		<div

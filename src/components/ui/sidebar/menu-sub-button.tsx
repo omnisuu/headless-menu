@@ -9,6 +9,7 @@ interface SidebarMenuSubButtonProps extends ComponentProps<typeof Link> {
 	isActive?: boolean;
 }
 
+/** Интерактивный элемент для элемента подменю сайдбара */
 const SidebarMenuSubButton: FC<SidebarMenuSubButtonProps> = ({
 	asChild = false,
 	size = "md",

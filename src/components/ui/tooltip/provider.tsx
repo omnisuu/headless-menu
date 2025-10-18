@@ -3,6 +3,7 @@ import type { ComponentProps, FC } from "react";
 
 interface TooltipProviderProps extends ComponentProps<typeof Provider> {}
 
+/** Провайдер подсказки */
 const TooltipProvider: FC<TooltipProviderProps> = ({
 	delayDuration = 0,
 	...restProps

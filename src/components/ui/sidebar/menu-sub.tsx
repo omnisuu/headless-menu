@@ -5,6 +5,7 @@ import { SidebarMenuSub as SidebarMenuSubPrimitive } from "@/primitives/sidebar"
 interface SidebarMenuSubProps
 	extends ComponentProps<typeof SidebarMenuSubPrimitive> {}
 
+/** Подменю сайдбара, можно считать за UL. Подразумевается расположение в SidebarMenu */
 const SidebarMenuSub: FC<SidebarMenuSubProps> = ({
 	className,
 	...restProps

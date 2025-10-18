@@ -5,6 +5,7 @@ import { SidebarGroup as SidebarGroupPrimitive } from "@/primitives/sidebar";
 interface SidebarGroupProps
 	extends ComponentProps<typeof SidebarGroupPrimitive> {}
 
+/** Группа элементов сайдбара */
 const SidebarGroup: FC<SidebarGroupProps> = ({ className, ...restProps }) => {
 	return (
 		<SidebarGroupPrimitive

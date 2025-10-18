@@ -3,6 +3,7 @@ import type { ComponentProps, FC } from "react";
 
 interface SheetProps extends ComponentProps<typeof Root> {}
 
+/** Обёртка шторы */
 const Sheet: FC<SheetProps> = ({ ...restProps }) => {
 	return <Root data-slot="sheet" {...restProps} />;
 };

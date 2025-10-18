@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface SheetOverlayProps extends ComponentProps<typeof Overlay> {}
 
+/** Оверлэй для шторы */
 const SheetOverlay: FC<SheetOverlayProps> = ({ className, ...restProps }) => {
 	return (
 		<Overlay

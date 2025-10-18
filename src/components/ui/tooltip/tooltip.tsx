@@ -4,6 +4,7 @@ import { TooltipProvider } from "./provider";
 
 interface TooltipProps extends ComponentProps<typeof Root> {}
 
+/** Обёртка для подсказки */
 const Tooltip: FC<TooltipProps> = ({ ...restProps }) => {
 	return (
 		<TooltipProvider>

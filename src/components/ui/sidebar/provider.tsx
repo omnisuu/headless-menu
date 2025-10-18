@@ -6,6 +6,7 @@ import { SidebarProvider as SidebarProviderPrimitive } from "@/primitives/sideba
 interface SidebarProviderProps
 	extends ComponentProps<typeof SidebarProviderPrimitive> {}
 
+// Обёртка, располагающая сайдбар и остальной контент корректно
 const SidebarProvider: FC<SidebarProviderProps> = ({
 	className,
 	...restProps

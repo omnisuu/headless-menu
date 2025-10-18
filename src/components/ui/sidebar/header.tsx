@@ -5,6 +5,7 @@ import { SidebarHeader as SidebarHeaderPrimitive } from "@/primitives/sidebar";
 interface SidebarHeaderProps
 	extends ComponentProps<typeof SidebarHeaderPrimitive> {}
 
+/** Хедер сайдбара */
 const SidebarHeader: FC<SidebarHeaderProps> = ({ className, ...restProps }) => {
 	return (
 		<SidebarHeaderPrimitive

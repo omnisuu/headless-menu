@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface SheetDescriptionProps extends ComponentProps<typeof Description> {}
 
+/** Описание шторы */
 const SheetDescription: FC<SheetDescriptionProps> = ({
 	className,
 	...restProps

@@ -1,14 +1,14 @@
-import type { ComponentProps, FC } from "react";
-import { SIDEBAR_WIDTH_MOBILE } from "@/config";
-import { cn } from "@/lib/utils";
-import { useSidebar } from "@/primitives/sidebar";
+import type { ComponentProps, CSSProperties, FC } from "react";
 import {
 	Sheet,
 	SheetContent,
 	SheetDescription,
 	SheetHeader,
 	SheetTitle,
-} from "../sheet";
+} from "@/components/ui/sheet";
+import { SIDEBAR_WIDTH_MOBILE } from "@/config";
+import { cn } from "@/lib/utils";
+import { useSidebar } from "@/primitives/sidebar";
 
 interface SidebarProps extends ComponentProps<"div"> {
 	side?: "left" | "right";
@@ -52,13 +52,15 @@ const Sidebar: FC<SidebarProps> = ({
 					style={
 						{
 							"--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-						} as React.CSSProperties
+						} as CSSProperties
 					}
 					side={side}
 				>
 					<SheetHeader className="sr-only">
-						<SheetTitle>Sidebar</SheetTitle>
-						<SheetDescription>Displays the mobile sidebar.</SheetDescription>
+						<SheetTitle>Меню</SheetTitle>
+						<SheetDescription>
+							Используйте меню для навигации по сайту
+						</SheetDescription>
 					</SheetHeader>
 					<div className="flex h-full w-full flex-col">{children}</div>
 				</SheetContent>
@@ -67,6 +69,7 @@ const Sidebar: FC<SidebarProps> = ({
 	}
 
 	return (
+		// Контейнер сайдбара
 		<div
 			className="group peer text-sidebar-foreground hidden md:block"
 			data-state={state}
@@ -75,7 +78,7 @@ const Sidebar: FC<SidebarProps> = ({
 			data-side={side}
 			data-slot="sidebar"
 		>
-			{/* This is what handles the sidebar gap on desktop */}
+			{/* "Формочка" для сайдбара, чтобы контент в случае чего не пропадал под ним */}
 			<div
 				data-slot="sidebar-gap"
 				className={cn(
@@ -87,6 +90,7 @@ const Sidebar: FC<SidebarProps> = ({
 						: "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
 				)}
 			/>
+			{/* Контейнер содержимого сайдбара */}
 			<div
 				data-slot="sidebar-container"
 				className={cn(

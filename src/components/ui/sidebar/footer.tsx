@@ -5,6 +5,7 @@ import { SidebarFooter as SidebarFooterPrimitive } from "@/primitives/sidebar";
 interface SidebarFooterProps
 	extends ComponentProps<typeof SidebarFooterPrimitive> {}
 
+/** Футер сайдбара */
 const SidebarFooter: FC<SidebarFooterProps> = ({ className, ...restProps }) => {
 	return (
 		<SidebarFooterPrimitive

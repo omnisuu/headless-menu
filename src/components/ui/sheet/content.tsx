@@ -9,6 +9,7 @@ interface SheetContentProps extends ComponentProps<typeof Content> {
 	side?: "top" | "right" | "bottom" | "left";
 }
 
+/** Контент шторы */
 const SheetContent: FC<SheetContentProps> = ({
 	className,
 	children,

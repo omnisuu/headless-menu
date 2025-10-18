@@ -42,7 +42,7 @@ const SidebarMenuButton: FC<SidebarMenuButtonProps> = ({
 	if (isMobile) {
 		let linkChildFound = false;
 
-		// Проверяем на наличие Link
+		// Проверка на наличие Link
 		Children.forEach(children, (child) => {
 			if (isValidElement(child)) {
 				if (

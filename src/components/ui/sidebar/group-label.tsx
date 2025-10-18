@@ -5,6 +5,7 @@ import { SidebarGroupLabel as SidebarGroupLabelPrimitive } from "@/primitives/si
 interface SidebarGroupLabelProps
 	extends ComponentProps<typeof SidebarGroupLabelPrimitive> {}
 
+/** Заголовок для группы элементов сайдбара */
 const SidebarGroupLabel: FC<SidebarGroupLabelProps> = ({
 	className,
 	...restProps
