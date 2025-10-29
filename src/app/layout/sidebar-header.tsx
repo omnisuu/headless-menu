@@ -13,7 +13,7 @@ const AppSidebarHeader = () => {
 			<SidebarMenu>
 				<SidebarMenuItem>
 					<SidebarMenuButton
-						tooltip="Стандартизатор"
+						tooltip="Headless сайдбар"
 						size="lg"
 						className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						asChild

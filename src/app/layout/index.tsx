@@ -10,8 +10,8 @@ import {
 	SidebarProvider,
 	SidebarToggle,
 } from "@/components/ui/sidebar";
-import { SidebarContent } from "./_sidebar-content";
 import { Header } from "./header";
+import { SidebarContent } from "./sidebar-content";
 import { SidebarHeader } from "./sidebar-header";
 
 export const Layout = () => {
