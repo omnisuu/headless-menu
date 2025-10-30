@@ -23,7 +23,7 @@ const TooltipContent: FC<TooltipContentProps> = ({
 				{...restProps}
 			>
 				{children}
-				<Arrow className="bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
+				<Arrow className="bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-[2px]" />
 			</Content>
 		</Portal>
 	);

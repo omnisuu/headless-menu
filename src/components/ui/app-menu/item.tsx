@@ -1,17 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import type { ComponentProps, FC } from "react";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
-import {
-	SidebarMenuButton as SidebarMenuButtonPrimitive,
-	useSidebar,
-} from "@/primitives/sidebar";
+import type { ComponentProps, FC, ReactNode } from "react";
+import { Link, useLocation } from "react-router-dom";
+import type { TooltipContent } from "@/components/ui/tooltip";
+import { SidebarMenuItem as SidebarMenuItemPrimitive } from "@/primitives/sidebar";
+import { SidebarMenuButton } from "./_menu-button";
 
-// Варианты стилизации
+// Варианты стилизации кнопки
 const sidebarMenuButtonVariants = cva(
 	"peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
 	{
@@ -34,51 +28,48 @@ const sidebarMenuButtonVariants = cva(
 	},
 );
 
-interface SidebarMenuButtonProps
-	extends ComponentProps<typeof SidebarMenuButtonPrimitive>,
-		VariantProps<typeof sidebarMenuButtonVariants> {
+interface AppMenuItemProps
+	extends VariantProps<typeof sidebarMenuButtonVariants> {
 	tooltip?: string | ComponentProps<typeof TooltipContent>;
+	to: string;
+	children: ReactNode;
+	_asComboItem?: boolean;
 }
 
-/** Интерактивный элемент для элемента меню сайдбара */
-const SidebarMenuButton: FC<SidebarMenuButtonProps> = ({
+/** Элемент меню сайдбара */
+const AppMenuItem: FC<AppMenuItemProps> = ({
 	variant = "default",
 	size = "default",
 	tooltip,
-	popover,
-	className,
+	to,
+	children,
+	_asComboItem = false,
 	...restProps
 }) => {
-	const { isMobile, state } = useSidebar();
+	const { pathname: path } = useLocation();
 
 	const component = (
-		<SidebarMenuButtonPrimitive
-			data-size={size}
-			className={cn(
-				"whitespace-nowrap",
-				sidebarMenuButtonVariants({ variant, size }),
-				className,
-			)}
-			{...restProps}
-		/>
+		<SidebarMenuButton
+			isActive={path === to}
+			size={size}
+			asChild
+			_asComboItem={_asComboItem}
+		>
+			<Link to={to}>{children}</Link>
+		</SidebarMenuButton>
 	);
 
-	// Если подсказка не нужна примитива достаточно
-	if (!tooltip) return component;
-
 	if (typeof tooltip === "string") tooltip = { children: tooltip };
+	if (_asComboItem) tooltip = undefined;
 
 	return (
-		<Tooltip>
-			<TooltipTrigger asChild>{component}</TooltipTrigger>
-			<TooltipContent
-				side="right"
-				align="center"
-				hidden={state !== "collapsed" || isMobile} // Скрыта если сайдбар развёрнут на полную
-				{...tooltip}
-			/>
-		</Tooltip>
+		<SidebarMenuItemPrimitive
+			className="group/menu-item relative"
+			{...restProps}
+		>
+			{component}
+		</SidebarMenuItemPrimitive>
 	);
 };
 
-export { SidebarMenuButton };
+export { AppMenuItem };

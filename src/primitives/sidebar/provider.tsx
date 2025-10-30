@@ -23,9 +23,12 @@ type SidebarContextType = {
 const SidebarContext = createContext<SidebarContextType | null>(null);
 
 /** Хук для использования контекста сайдбара */
-const useSidebar = () => {
+const useSidebar = (cfg?: { customError?: string }) => {
 	const ctx = useContext(SidebarContext);
-	if (!ctx) throw new Error("useSidebar must be used within a SidebarProvider");
+	if (!ctx)
+		throw new Error(
+			cfg?.customError || "useSidebar must be used within a SidebarProvider",
+		);
 	return ctx;
 };
 
