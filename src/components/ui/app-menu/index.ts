@@ -8,6 +8,35 @@ import { AppMenuGroup } from "./group";
 import { AppMenuHeader } from "./header";
 import { AppMenuItem } from "./item";
 
+/**
+ * Главный составной компонент меню приложения.
+ *
+ * @namespace AppMenu
+ * @description
+ * Компонент представляет собой систему меню со строгой структурой вложенности.
+ * Все подкомпоненты должны использоваться через namespace нотацию: AppMenu.ComponentName.
+ *
+ * @example
+ * <AppMenu.AppWrapper>
+ *   <AppMenu>
+ *     <AppMenu.Header>
+ *       ...
+ *     </AppMenu.Header>
+ *
+ *     <AppMenu.Content>
+ *       ...
+ *     </AppMenu.Content>
+ *
+ *     <AppMenu.Footer>
+ *       ...
+ *     </AppMenu.Footer>
+ *   </AppMenu>
+ *
+ *   <AppMenu.AppWindow>
+ *     ...
+ *   </AppMenu.AppWindow>
+ * </AppMenu.AppWrapper>
+ */
 export default Object.assign(AppMenu, {
 	/**
 	 * Корневая обертка всего приложения.
