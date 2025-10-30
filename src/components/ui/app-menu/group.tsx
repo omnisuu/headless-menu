@@ -17,11 +17,7 @@ interface AppMenuGroupProps {
 }
 
 /** Группа элементов сайдбара */
-const AppMenuGroup: FC<AppMenuGroupProps> = ({
-	label,
-	children,
-	...restProps
-}) => {
+const AppMenuGroup: FC<AppMenuGroupProps> = ({ label, children }) => {
 	// Валидация детей элемента. Подскажет разработчику, всё ли он сделал правильно
 	useEffect(() => {
 		const problems = validateChildren(ALLOWED_CHILDREN, children);
@@ -35,10 +31,7 @@ const AppMenuGroup: FC<AppMenuGroupProps> = ({
 	}, [children]);
 
 	return (
-		<SidebarGroupPrimitive
-			className="relative flex w-full min-w-0 flex-col p-2"
-			{...restProps}
-		>
+		<SidebarGroupPrimitive className="relative flex w-full min-w-0 flex-col p-2">
 			{/* Добавить лейбл если есьт соответствующий проп */}
 			{label && (
 				<SidebarGroupLabelPrimitive
