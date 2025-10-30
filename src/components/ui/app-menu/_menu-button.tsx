@@ -75,6 +75,7 @@ const SidebarMenuButton: FC<SidebarMenuButtonProps> = ({
 
 	let tooltipValue = null;
 
+	// Для тултипа желательно вычленить текст, без прочей шелухи
 	Children.forEach(children, (ch) => {
 		if (isValidElement(ch)) {
 			// biome-ignore lint/suspicious/noExplicitAny: TODO Время ограниченно, типизирую позже

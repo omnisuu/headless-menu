@@ -40,6 +40,7 @@ const AppMenu: FC<AppMenuProps> = ({ className, children }) => {
 		);
 	}, [children]);
 
+	// На мобильной версии - Sheet
 	if (isMobile) {
 		return (
 			<Sheet open={openOnMobile} onOpenChange={setOpenOnMobile}>
@@ -67,6 +68,7 @@ const AppMenu: FC<AppMenuProps> = ({ className, children }) => {
 		);
 	}
 
+	// На пк-версии - сайдбар
 	return (
 		// Контейнер сайдбара
 		<div

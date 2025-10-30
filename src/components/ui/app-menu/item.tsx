@@ -48,6 +48,7 @@ const AppMenuItem: FC<AppMenuItemProps> = ({
 }) => {
 	const { pathname: path } = useLocation();
 
+	// Базовый компонент
 	const component = (
 		<SidebarMenuButton
 			isActive={path === to}
@@ -59,6 +60,7 @@ const AppMenuItem: FC<AppMenuItemProps> = ({
 		</SidebarMenuButton>
 	);
 
+	// Приведение тултипа к норме. Для комбо-айтемов норма - без тултипа
 	if (typeof tooltip === "string") tooltip = { children: tooltip };
 	if (_asComboItem) tooltip = undefined;
 

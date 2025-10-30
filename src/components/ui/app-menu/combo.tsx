@@ -49,6 +49,7 @@ const AppMenuCombo: FC<AppMenuComboProps> = ({ title, children }) => {
 	let firstChildPath: string | null = null;
 	let isContainsCurrentPage = false;
 
+	// Получаем ссылку из первого элемента, и определяем, есть ли среди детей активный элемент
 	for (const child of Children.toArray(children)) {
 		if (isValidElement(child)) {
 			// biome-ignore lint/suspicious/noExplicitAny: TODO Время ограниченно, типизирую позже
@@ -56,12 +57,13 @@ const AppMenuCombo: FC<AppMenuComboProps> = ({ title, children }) => {
 			if (!foundPath) continue;
 
 			if (!firstChildPath) firstChildPath = foundPath;
-			if (path.includes(foundPath)) isContainsCurrentPage = true;
+			if (path === foundPath) isContainsCurrentPage = true;
 		}
 	}
 
 	const hideHelpers = state !== "collapsed" || isMobile;
 
+	// Основной компонент
 	const trigger = firstChildPath ? (
 		<SidebarMenuButton
 			_asComboItem
@@ -79,6 +81,8 @@ const AppMenuCombo: FC<AppMenuComboProps> = ({ title, children }) => {
 		</SidebarMenuButton>
 	);
 
+	// Детям прокидывается проп _asComboItem чтобы они знали как себя вести
+	// TODO: Эффективнее через context api
 	const childrenAsComboItem = Children.map(children, (child) => {
 		if (isValidElement(child)) {
 			return cloneElement(child, {
@@ -89,6 +93,7 @@ const AppMenuCombo: FC<AppMenuComboProps> = ({ title, children }) => {
 		return child;
 	});
 
+	// Колапсед-состояние
 	if (!hideHelpers) {
 		return (
 			<CollapsedHoverCard title={title} trigger={trigger}>
@@ -97,6 +102,7 @@ const AppMenuCombo: FC<AppMenuComboProps> = ({ title, children }) => {
 		);
 	}
 
+	// Развёрнутое состояние
 	return (
 		<Collapsible
 			open={isContainsCurrentPage}
